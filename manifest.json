@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Xap the Senior Role, Filter",
+  "version": "1.0",
+  "description": "Filter out senior and leadership positions from Seek job search results, or whatever you want.",
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/xap16.png",
+      "32": "images/xap32.png",
+      "192": "images/xap192.png"
+    }
+  },
+  "icons": {
+    "16": "images/xap16.png",
+    "32": "images/xap32.png",
+    "192": "images/xap192.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.seek.com.au/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

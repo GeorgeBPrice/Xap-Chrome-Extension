@@ -1,0 +1,72 @@
+body {
+  width: 300px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.filter-section {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #0d65b5;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0a4f8f;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.tag {
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  padding: 3px 8px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.tag .remove {
+  margin-left: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #777;
+}
+
+.counts {
+  margin-top: 15px;
+  font-size: 14px;
+}

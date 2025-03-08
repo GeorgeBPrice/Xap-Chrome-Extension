@@ -1,0 +1,64 @@
+<!--
+    This popup is a UI for the Chrome extension 'Xap the Senior, Filter'.
+
+    The extension filters out job postings from seek.com.au that contain certain keywords
+    in their titles. The extension is configured by the user in the form of a black
+    list of keywords. The popup displays the current configuration and allows the user
+    to add new keywords to the list.
+
+    The popup also displays the total number of jobs, the number of jobs filtered out,
+    and the number of jobs visible after filtering.
+
+    The extension is implemented with the content.js script that filters out job postings
+    from the job search results page. The content script is injected into the page
+    after the page has finished loading, and it monitors the page for changes to
+    the list of job postings using a MutationObserver.
+
+    When the content script is notified of a change to the list of job postings, it
+    re-applies the filter. The content script also listens for messages from the popup
+    and updates the filter accordingly.
+
+    The popup communicates with the content script using the chrome.tabs API. The
+    popup sends a message to the content script to apply the filter, and the content
+    script sends a message back to the popup with the total number of jobs, the
+    number of jobs filtered out, and the number of jobs visible after filtering.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Seek Job Filter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1>Xap the Senior Role, Filter</h1>
+
+    <div class="filter-section">
+      <label>
+        <input type="checkbox" id="enable-filter" checked />
+        Enable filtering
+      </label>
+    </div>
+
+    <div class="filter-section">
+      <label for="filter-keywords">Keywords to filter out (job titles):</label>
+      <input
+        type="text"
+        id="filter-keywords"
+        placeholder="Add keyword and press Enter"
+      />
+      <div class="tag-container" id="keyword-tags"></div>
+    </div>
+
+    <button id="apply-filters">Apply Filters</button>
+    <button id="reset-filters">Reset</button>
+    <button id="refresh-page">Refresh Page</button>
+
+    <div class="counts">
+      <div id="total-count">Total jobs: -</div>
+      <div id="filtered-count">Filtered jobs: -</div>
+      <div id="visible-count">Visible jobs: -</div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
