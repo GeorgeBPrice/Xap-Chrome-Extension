@@ -4,6 +4,9 @@
 
 The Xap Chrome extension filters out Senior-level job listings based on predefined or user-added keywords, allowing users to hide job posts with specific titles. This is a cheeky work-around to remove the Senior job spam, for job searchers who are just not there yet! Alternatively, you may add your own keyword filters entirely. The filtering is case-insensitive, so job titles are matched regardless of capitalization. Filters persist in local browser storage.
 
+<img width="382" alt="Xap Filter Options" src="https://github.com/user-attachments/assets/e043798d-acac-4d92-bd30-a50be43cd3b2" />
+
+
 ## Features
 
 - **Keyword-based filtering**: Hide job listings that contain certain words in the title.
