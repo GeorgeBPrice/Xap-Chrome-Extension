@@ -1,4 +1,4 @@
-# Job Filter Chrome Extension
+# Chrome Extension, Zap the Senior jobs, filter
 
 ## Overview
 
@@ -46,5 +46,3 @@ To make the extension easily accessible:
 4. Click on a keyword’s `X` to remove it from the filter list.
 5. Use the **Apply Filters** button to refresh the filtering process.
 6. Click **Refresh Page** if needed to reload the listings.
-
-Enjoy filtering your job search with ease! 🚀
