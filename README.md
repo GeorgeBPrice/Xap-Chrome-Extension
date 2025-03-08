@@ -1,4 +1,4 @@
-# Chrome Extension, Zap the Senior jobs, filter
+# Chrome Extension, Xap the Senior jobs, filter
 
 ## Overview
 
