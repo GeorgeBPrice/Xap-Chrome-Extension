@@ -1,7 +1,7 @@
 <!--
     This popup is a UI for the Chrome extension 'Xap the Senior, Filter'.
 
-    The extension filters out job postings from seek.com.au that contain certain keywords
+    The extension filters out job postings from Seek.com.au and LinkedIn Jobs that contain certain keywords
     in their titles. The extension is configured by the user in the form of a black
     list of keywords. The popup displays the current configuration and allows the user
     to add new keywords to the list.
@@ -26,17 +26,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Seek Job Filter</title>
+    <title>Job Filter</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
     <h1>Xap the Senior Role, Filter</h1>
+    <p class="platform-info">Supports Seek.com.au and LinkedIn Jobs</p>
 
     <div class="filter-section">
       <label>
         <input type="checkbox" id="enable-filter" checked />
         Enable filtering
       </label>
+    </div>
+
+    <div class="filter-section">
+      <label>
+        <input type="checkbox" id="enable-experience-filter" />
+        Show only selected role levels(reloads page)
+      </label>
+      <select id="experience-levels" multiple class="experience-levels-select">
+        <option value="graduate">Graduate</option>
+        <option value="junior">Junior</option>
+        <option value="mid-level">Mid-Level</option>
+      </select>
+      <div class="experience-hint">(Hold Ctrl/Cmd to select multiple)</div>
     </div>
 
     <div class="filter-section">
@@ -57,6 +71,14 @@
       <div id="total-count">Total jobs: -</div>
       <div id="filtered-count">Filtered jobs: -</div>
       <div id="visible-count">Visible jobs: -</div>
+    </div>
+
+    <!-- Filtered job titles dropdown (bottom right) -->
+    <div id="filtered-jobs-dropdown" class="filtered-jobs-dropdown">
+      <div id="filtered-jobs-summary" class="filtered-jobs-summary">
+        Filtered Jobs: <span id="filtered-jobs-count">0</span>
+      </div>
+      <ul id="filtered-jobs-list" class="filtered-jobs-list" style="display: none;"></ul>
     </div>
 
     <script src="popup.js"></script>

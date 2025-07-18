@@ -9,6 +9,13 @@ h1 {
   margin-bottom: 10px;
 }
 
+.platform-info {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
 .filter-section {
   margin-bottom: 15px;
 }
@@ -69,4 +76,72 @@ button:hover {
 .counts {
   margin-top: 15px;
   font-size: 14px;
+}
+
+.filtered-jobs-dropdown {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  min-width: 180px;
+  max-width: 260px;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 1000;
+  font-size: 13px;
+}
+
+.filtered-jobs-summary {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtered-jobs-list {
+  max-height: 180px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 8px 12px;
+  list-style: disc inside;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 0 0 6px 6px;
+}
+
+.filtered-jobs-list li {
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.experience-levels-select {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  background: #fafbfc;
+}
+
+.experience-hint {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 350px) {
+  .filtered-jobs-dropdown {
+    min-width: 120px;
+    max-width: 98vw;
+    right: 2px;
+    bottom: 2px;
+  }
 }

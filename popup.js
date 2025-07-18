@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "Director",
     "Manager",
     "Principal",
+    "Principle",
+    "Architect",
+    "Staff"
   ];
 
   // Load saved settings
@@ -165,4 +168,111 @@ document.addEventListener("DOMContentLoaded", function () {
       renderKeywordTags(defaultKeywords);
     });
   }
+
+  // --- Filtered Jobs Dropdown ---
+  const filteredJobsDropdown = document.getElementById("filtered-jobs-dropdown");
+  const filteredJobsSummary = document.getElementById("filtered-jobs-summary");
+  const filteredJobsList = document.getElementById("filtered-jobs-list");
+  const filteredJobsCount = document.getElementById("filtered-jobs-count");
+  const filteredJobsToggle = document.getElementById("filtered-jobs-toggle");
+  let filteredDropdownOpen = false;
+
+  function updateFilteredJobsDropdown() {
+    chrome.storage.local.get({ filteredJobTitles: [] }, function (items) {
+      const titles = items.filteredJobTitles || [];
+      filteredJobsCount.textContent = titles.length;
+      filteredJobsList.innerHTML = "";
+      if (titles.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "(None)";
+        filteredJobsList.appendChild(li);
+      } else {
+        titles.forEach((title) => {
+          const li = document.createElement("li");
+          li.textContent = title;
+          filteredJobsList.appendChild(li);
+        });
+      }
+    });
+  }
+
+  filteredJobsSummary.addEventListener("click", function () {
+    filteredDropdownOpen = !filteredDropdownOpen;
+    filteredJobsList.style.display = filteredDropdownOpen ? "block" : "none";
+    filteredJobsToggle.textContent = filteredDropdownOpen ? "▲" : "▼";
+  });
+
+  // Update dropdown on popup open and after filters are applied
+  updateFilteredJobsDropdown();
+  document.getElementById("apply-filters").addEventListener("click", function () {
+    setTimeout(updateFilteredJobsDropdown, 300);
+  });
+  document.getElementById("refresh-page").addEventListener("click", function () {
+    setTimeout(updateFilteredJobsDropdown, 1000);
+  });
+
+  // Experience filter UI
+  const enableExperienceFilter = document.getElementById("enable-experience-filter");
+  const experienceLevelsSelect = document.getElementById("experience-levels");
+  const keywordFilterSection = document.querySelector('.filter-section:has(#filter-keywords)');
+  const keywordTags = document.getElementById("keyword-tags");
+  let previousToggleState = false;
+
+  // Function to toggle keyword filter section
+  function toggleKeywordFilterSection(enabled) {
+    if (keywordFilterSection) {
+      keywordFilterSection.style.opacity = enabled ? "0.5" : "1";
+      keywordFilterSection.style.pointerEvents = enabled ? "none" : "auto";
+    }
+    if (keywordInput) {
+      keywordInput.disabled = enabled;
+    }
+    if (keywordTags) {
+      keywordTags.style.opacity = enabled ? "0.5" : "1";
+    }
+  }
+
+  // Load saved experience filter settings
+  chrome.storage.local.get({
+    enableExperienceFilter: false,
+    experienceLevels: []
+  }, function (items) {
+    enableExperienceFilter.checked = items.enableExperienceFilter;
+    previousToggleState = items.enableExperienceFilter;
+    Array.from(experienceLevelsSelect.options).forEach(opt => {
+      opt.selected = items.experienceLevels.includes(opt.value);
+    });
+    toggleKeywordFilterSection(items.enableExperienceFilter);
+  });
+
+  // Handle toggle change (reload page)
+  enableExperienceFilter.addEventListener("change", function() {
+    const selectedLevels = Array.from(experienceLevelsSelect.selectedOptions).map(opt => opt.value);
+    chrome.storage.local.set({
+      enableExperienceFilter: enableExperienceFilter.checked,
+      experienceLevels: selectedLevels
+    }, function () {
+      toggleKeywordFilterSection(enableExperienceFilter.checked);
+      
+      // Only reload if toggle state actually changed
+      if (enableExperienceFilter.checked !== previousToggleState) {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+          chrome.tabs.reload(tabs[0].id);
+        });
+      }
+      previousToggleState = enableExperienceFilter.checked;
+    });
+  });
+
+  // Handle dropdown change (no reload, just apply filters)
+  experienceLevelsSelect.addEventListener("change", function() {
+    const selectedLevels = Array.from(experienceLevelsSelect.selectedOptions).map(opt => opt.value);
+    chrome.storage.local.set({
+      enableExperienceFilter: enableExperienceFilter.checked,
+      experienceLevels: selectedLevels
+    }, function () {
+      // Just apply filters without reloading
+      applyFilters();
+    });
+  });
 });
