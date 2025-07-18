@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Xap the Senior Role, Filter",
   "version": "1.0",
-  "description": "Filter out senior and leadership positions from Seek job search results, or whatever you want.",
+  "description": "Filter out senior and leadership positions from Seek and LinkedIn job search results, or whatever you want.",
   "permissions": ["activeTab", "storage"],
   "action": {
     "default_popup": "popup.html",
@@ -19,7 +19,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.seek.com.au/*"],
+      "matches": [
+        "*://*.seek.com.au/*",
+        "*://*.linkedin.com/jobs/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_end"
     }
