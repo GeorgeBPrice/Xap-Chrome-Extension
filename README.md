@@ -4,6 +4,8 @@
 
 The Xap Chrome extension filters out Senior rolled job listings based on predefined keywords, allowing users to hide job posts with specific titles on both **Seek** and **LinkedIn** job search platforms. Alternatively, you may add your own keyword filters entirely. The filtering is case-insensitive, so job titles are matched regardless of capitalization. Filters persist in local browser storage.
 
+<img width="433" height="735" alt="image" src="https://github.com/user-attachments/assets/4265cd0a-04e1-48cf-8cb0-f966da93f0db" />
+
 ## Features
 
 - **Multi-platform support**: Works on both Seek.com.au and LinkedIn Jobs
