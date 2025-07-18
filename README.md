@@ -1,4 +1,4 @@
-# Job Filter Chrome Extension
+# Chrome Extension, Xap the Senior jobs, filter
 
 ## Overview
 
